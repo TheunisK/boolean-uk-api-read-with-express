@@ -42,6 +42,19 @@ function Pet() {
 
     mockData();
   });
+
+  const createOnePet = pet => {
+    const createPet = `
+      INSERT INTO pets (name, age, type, breed, microchip)
+      VALUES ($1 $2 $3 $4 $5)
+      RETURNING *;
+      `;
+    return db
+      .query(createPet, [pet.name, pet.age, pet.type, pet.breed, pet.microchip])
+      .then(result => result.rows[0])
+      .catch(console.error)
+  }
+  return { createOnePet };
 }
 
 module.exports = Pet;

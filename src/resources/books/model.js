@@ -42,6 +42,21 @@ function Book() {
 
     mockData();
   });
+  const createOneBook = book => {
+    const createBook = `
+      INSERT INTO books (title, type, author, topic, publicationDate)
+      VALUES ($1, $2, $3, $4, $5)
+    `
+
+    return db.query(createBook, [book.title, book.type, book.author, book.topic, book.publicationDate])
+      .then((result) => result.rows[0])
+      .catch(console.error)
+  }
+
+  return {
+    createOneBook
+  }
+
 }
 
 module.exports = Book;

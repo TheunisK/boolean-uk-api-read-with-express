@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const db = require("./utils/database");
 const Book = require("./resources/books/model");
 const Pet = require("./resources/pets/model");
+const petsRouter = require("./resources/pets/router");
+const booksRouter = require("./resources/books/router");
 
 /* IMPORT ROUTERS */
 
@@ -16,6 +18,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 /* SETUP ROUTES */
+
+app.use("/pets", petsRouter);
+app.use("/books", booksRouter);
 
 /* CATCH-ALL TO TEST ROUTES */
 
