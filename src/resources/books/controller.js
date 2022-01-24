@@ -10,4 +10,13 @@ async function createOne(req, res) {
     return res.json({ data: thisRes });
 };
 
-module.exports = { createOne }
+async function getAllFiction(req, res) {
+    const allFiction = Book().getAllFiction;
+    const thisRes = await allFiction(res);
+    return res.json({ data: thisRes });
+}
+
+module.exports = { 
+    createOne,
+    getAllFiction
+};

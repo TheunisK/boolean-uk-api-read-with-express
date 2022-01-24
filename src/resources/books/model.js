@@ -53,8 +53,22 @@ function Book() {
       .catch(console.error)
   }
 
+  function getAllFiction(res) {
+    const getAllFiction = `
+      SELECT *
+        FROM books
+        WHERE type = $1
+    `
+
+    return db
+      .query(getAllFiction, ["Fiction"])
+      .then(result => result.rows)
+      .catch(console.error);
+  }
+
   return {
-    createOneBook
+    createOneBook,
+    getAllFiction
   }
 
 }
